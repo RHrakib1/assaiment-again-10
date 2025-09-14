@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { MdAutoDelete } from "react-icons/md";
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { CiEdit } from "react-icons/ci";
 
@@ -43,7 +43,9 @@ export default function MyList() {
         }
       })
   }
-  
+
+
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -68,7 +70,7 @@ export default function MyList() {
                 <td>{d.location}</td>
                 <td>{d.yearcost}</td>
                 <td className='cursor-pointer ' onClick={() => hendledetele(d._id)}><MdAutoDelete className='size-5'></MdAutoDelete></td>
-                <td className='cursor-pointer '><CiEdit className='size-5'></CiEdit ></td>
+                <Link to={`/updatedata/${d._id}`}><td className='cursor-pointer '><CiEdit className='size-5'></CiEdit ></td></Link>
               </tr>)
             }
           </tbody>

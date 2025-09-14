@@ -15,6 +15,7 @@ import MyList from './Component/MyList/MyList.jsx'
 import AllTouristsSpot from './Component/All Tourists Spot/AllTouristsSpot.jsx'
 import AddTouristsSpot from './Component/Add Tourists Spot/AddTouristsSpot.jsx'
 import DetailsView from './Component/All Tourists Spot/DetailsView.jsx'
+import Update from './Component/Update/Update.jsx'
 
 
 const router = createBrowserRouter([
@@ -51,6 +52,11 @@ const router = createBrowserRouter([
       {
         path: '/detailsview/:id',
         element: <DetailsView></DetailsView>,
+        loader: ({ params }) => fetch(`http://localhost:5000/sportdata/${params.id}`)
+      },
+      {
+        path: '/updatedata/:id',
+        element: <Update></Update>,
         loader: ({ params }) => fetch(`http://localhost:5000/sportdata/${params.id}`)
       }
     ]
