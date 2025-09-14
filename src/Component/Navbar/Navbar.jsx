@@ -1,6 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
+    const links = <>
+        <Link to='/'><li><a>Home</a></li></Link>
+        <Link to='/login'><li><a>Login</a></li></Link>
+        <Link to='/register'><li><a>Register</a></li></Link>
+    </>
     return (
         <div>
             <div className="navbar bg-base-100 shadow-sm">
@@ -12,14 +18,14 @@ export default function Navbar() {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            <li><a>Item 1</a></li>
+                            {links}
                         </ul>
                     </div>
                     <a className="btn btn-ghost text-xl">daisyUI</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><a>Item 1</a></li>
+                        {links}
                     </ul>
                 </div>
                 <div className="navbar-end">
