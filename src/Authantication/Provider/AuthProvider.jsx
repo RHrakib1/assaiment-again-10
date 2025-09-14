@@ -5,8 +5,8 @@ import auth from '../Firebase/Firebase.config'
 export const AuthContext = createContext()
 
 export default function AuthProvider({ children }) {
-    const [user, setuser] = useState(null)
-    const [loadding, setloadding] = useState(null)
+    const [userdata, setuserdata] = useState(null)
+    const [loadding, setloadding] = useState(true)
 
     const newcreateuser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -16,7 +16,7 @@ export default function AuthProvider({ children }) {
     }
 
     const info = {
-        user,
+        userdata,
         loadding,
         newcreateuser,
         loginuser

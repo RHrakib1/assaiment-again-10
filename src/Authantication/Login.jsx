@@ -1,6 +1,36 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from './Provider/AuthProvider'
+import Swal from 'sweetalert2'
 
 export default function Login() {
+    const { userdata, loginuser } = useContext(AuthContext)
+    const hendleformlogin = e => {
+        e.preventDefault()
+        const shortdata = e.target
+        const email = shortdata.email.value
+        const password = shortdata.password.value
+        const objdata = { email, password }
+        console.log(objdata)
+
+        loginuser(email, password)
+            .then(result => {
+                console.log(result.user)
+                Swal.fire({
+                    title: 'Success!',
+                    text: '🌍 You have successfully logged in. Let’s continue your travel adventure with us.',
+                    icon: 'success',
+                    confirmButtonText: 'Let’s Go!'
+                })
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Incorrect email or password. Please try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                })
+            })
+    }
     return (
         <div>
             <div className="hero bg-base-200 min-h-screen">
@@ -14,14 +44,16 @@ export default function Login() {
                     </div>
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                         <div className="card-body">
-                            <fieldset className="fieldset">
-                                <label className="label">Email</label>
-                                <input type="email" className="input" placeholder="Email" />
-                                <label className="label">Password</label>
-                                <input type="password" className="input" placeholder="Password" />
-                                <div><a className="link link-hover">Forgot password?</a></div>
-                                <button className="btn btn-neutral mt-4">Login</button>
-                            </fieldset>
+                            <form onSubmit={hendleformlogin}>
+                                <fieldset className="fieldset">
+                                    <label className="label">Email</label>
+                                    <input name='email' type="email" className="input" placeholder="Email" />
+                                    <label className="label">Password</label>
+                                    <input name='password' type="password" className="input" placeholder="Password" />
+                                    <div><a className="link link-hover">Forgot password?</a></div>
+                                    <button className="btn btn-neutral mt-4">Login</button>
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
                 </div>
