@@ -11,6 +11,10 @@ import Home from './Component/Home/Home.jsx'
 import Login from './Authantication/Login.jsx'
 import Register from './Authantication/Register.jsx'
 import AuthProvider from './Authantication/Provider/AuthProvider.jsx'
+import MyList from './Component/MyList/MyList.jsx'
+import AllTouristsSpot from './Component/All Tourists Spot/AllTouristsSpot.jsx'
+import AddTouristsSpot from './Component/Add Tourists Spot/AddTouristsSpot.jsx'
+import DetailsView from './Component/All Tourists Spot/DetailsView.jsx'
 
 
 const router = createBrowserRouter([
@@ -29,6 +33,24 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      },
+      {
+        path: '/mylist',
+        element: <MyList></MyList>
+      },
+      {
+        path: '/addsport',
+        element: <AddTouristsSpot>  </AddTouristsSpot>
+      },
+      {
+        path: '/allsport',
+        element: <AllTouristsSpot></AllTouristsSpot>,
+        loader: () => fetch('http://localhost:5000/sportdata')
+      },
+      {
+        path: '/detailsview/:id',
+        element: <DetailsView></DetailsView>,
+        loader: ({ params }) => fetch(`http://localhost:5000/sportdata/${params.id}`)
       }
     ]
   },

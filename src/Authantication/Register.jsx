@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
 import { AuthContext } from './Provider/AuthProvider'
 import Swal from 'sweetalert2'
+import { FaGoogle } from "react-icons/fa";
+import auth from './Firebase/Firebase.config';
 
 export default function Register() {
-    const { userdata, newcreateuser } = useContext(AuthContext)
+    const { userdata, newcreateuser, googleuser } = useContext(AuthContext)
 
     const heandleregisterform = e => {
         e.preventDefault()
@@ -23,9 +25,26 @@ export default function Register() {
                     confirmButtonText: 'Start Journey'
                 })
             })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
-
+    const googlehendle = () => {
+        googleuser(auth)
+            .then(result => {
+                console.log(result.user)
+                Swal.fire({
+                    title: 'Success!',
+                    text: '🎉 Congratulations! You have successfully registered and joined our travel community.',
+                    icon: 'success',
+                    confirmButtonText: 'Start Journey'
+                })
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
 
     return (
@@ -47,8 +66,10 @@ export default function Register() {
                                     <label className="label">Password</label>
                                     <input name='password' type="password" className="input" placeholder="Password" />
                                     <button className="btn btn-neutral mt-4">Register</button>
+
                                 </fieldset>
                             </form>
+                            <button onClick={googlehendle} className="btn btn-neutral mt-2"><FaGoogle /></button>
                         </div>
                     </div>
                 </div>
