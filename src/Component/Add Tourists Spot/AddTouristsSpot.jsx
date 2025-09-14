@@ -32,7 +32,7 @@ export default function AddTouristsSpot() {
                         icon: "success",
                         title: "Your Data has been saved",
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 2500
                     });
                 }
                 console.log(data)
