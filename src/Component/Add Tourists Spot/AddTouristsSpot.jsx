@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Swal from 'sweetalert2'
+import { AuthContext } from '../../Authantication/Provider/AuthProvider'
 
 export default function AddTouristsSpot() {
+    const { userdata } = useContext(AuthContext)
     const hendleform = e => {
         e.preventDefault()
         const short = e.target
@@ -14,7 +16,8 @@ export default function AddTouristsSpot() {
         const seasonality = short.seasonality.value
         const yearcost = short.yearcost.value
         const time = short.time.value
-        const objdata = { photo, name, countryname, location, description, cost, seasonality, time, yearcost }
+        const email = userdata?.email
+        const objdata = { photo, name, countryname, location, description, cost, seasonality, time, yearcost, email }
         console.log(objdata)
 
         fetch('http://localhost:5000/sportdata', {

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.jpg'
+import { AuthContext } from '../../Authantication/Provider/AuthProvider'
 
 export default function Navbar() {
     const links = <>
@@ -11,6 +12,17 @@ export default function Navbar() {
         <Link to='/login'><li><a>Login</a></li></Link>
         <Link to='/register'><li><a>Register</a></li></Link>
     </>
+    const { userdata, userlogout } = useContext(AuthContext)
+
+    const hendlelogoutuser = () => {
+        userlogout()
+            .then(result => {
+                console.log(result)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
     return (
         <div>
             <div className="navbar bg-base-100 shadow-sm">
@@ -25,7 +37,7 @@ export default function Navbar() {
                             {links}
                         </ul>
                     </div>
-                    {/* <img className='w-20' src={logo} alt="" /> */}
+                    <img className='w-20' src={logo} alt="" />
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -33,7 +45,18 @@ export default function Navbar() {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full">
+                            <img
+                                alt="Tailwind CSS Navbar component"
+                                src={userdata?.photoURL} />
+                        </div>
+                    </div>
+                    <ul
+                        tabIndex={0}
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        <li onClick={hendlelogoutuser}><a>Logout</a></li>
+                    </ul>
                 </div>
             </div>
         </div>

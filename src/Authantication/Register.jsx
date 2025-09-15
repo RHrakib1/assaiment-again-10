@@ -3,6 +3,7 @@ import { AuthContext } from './Provider/AuthProvider'
 import Swal from 'sweetalert2'
 import { FaGoogle } from "react-icons/fa";
 import auth from './Firebase/Firebase.config';
+import { Link } from 'react-router-dom';
 
 export default function Register() {
     const { userdata, newcreateuser, googleuser } = useContext(AuthContext)
@@ -70,6 +71,7 @@ export default function Register() {
                                 </fieldset>
                             </form>
                             <button onClick={googlehendle} className="btn btn-neutral mt-2"><FaGoogle /></button>
+                            <p>Already have an account? <Link to='/login' className='text-blue-400 font-bold text-xl'>Log in</Link></p>
                         </div>
                     </div>
                 </div>

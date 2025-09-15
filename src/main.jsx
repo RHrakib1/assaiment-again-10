@@ -16,6 +16,7 @@ import AllTouristsSpot from './Component/All Tourists Spot/AllTouristsSpot.jsx'
 import AddTouristsSpot from './Component/Add Tourists Spot/AddTouristsSpot.jsx'
 import DetailsView from './Component/All Tourists Spot/DetailsView.jsx'
 import Update from './Component/Update/Update.jsx'
+import PrivateRoute from './Authantication/Private/PrivateRoute.jsx'
 
 
 const router = createBrowserRouter([
@@ -37,8 +38,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/mylist',
-        element: <MyList></MyList>,
-        loader: () => fetch(`http://localhost:5000/sportdata`)
+        element: <PrivateRoute><MyList></MyList></PrivateRoute>,
+        // loader: () => fetch(`http://localhost:5000/sportdata`)
       },
       {
         path: '/addsport',

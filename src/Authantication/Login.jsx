@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { AuthContext } from './Provider/AuthProvider'
 import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom'
 
 export default function Login() {
     const { userdata, loginuser } = useContext(AuthContext)
@@ -54,6 +55,7 @@ export default function Login() {
                                     <button className="btn btn-neutral mt-4">Login</button>
                                 </fieldset>
                             </form>
+                            <p>Don’t have an account? <Link to='/register' className='text-blue-400 font-bold text-xl'>Register</Link></p>
                         </div>
                     </div>
                 </div>
